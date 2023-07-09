@@ -231,6 +231,31 @@ func FromZIP(path string) (Filer, error) {
 	return &zipFiler{arch: arch, tree: root}, nil
 }
 
+func FromZipBytes(data []byte) (Filer, error) {
+	arch, err := zip.NewReader(bytes.NewReader(data), int64(len(data)))
+	if err != nil {
+		return nil, errors.Wrap(err, "cannot read ZIP data")
+	}
+	root := &zipNode{children: map[string]*zipNode{}}
+	for _, f := range arch.File {
+		path := strings.Split(f.Name, "/") // zip always has "/"
+		node := root
+		for _, part := range path {
+			if part == "" {
+				continue
+			}
+			child := node.children[part]
+			if child == nil {
+				child = &zipNode{children: map[string]*zipNode{}}
+				node.children[part] = child
+			}
+			node = child
+		}
+		node.file = f
+	}
+	return &zipFiler{arch: arch, tree: root}, nil
+}
+
 func (filer *zipFiler) ReadFile(path string) ([]byte, error) {
 	parts := strings.Split(path, string("/"))
 	node := filer.tree
