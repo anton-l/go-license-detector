@@ -7,7 +7,7 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/anton-l/go-license-detector/v4/licensedb/filer"
+	"github.com/anton-l/go-license-detector/licensedb/filer"
 )
 
 // Analyse runs license analysis on each item in `args`
