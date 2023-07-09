@@ -4,9 +4,9 @@ import (
 	"errors"
 	paths "path"
 
-	"github.com/go-enry/go-license-detector/v4/licensedb/api"
-	"github.com/go-enry/go-license-detector/v4/licensedb/filer"
-	"github.com/go-enry/go-license-detector/v4/licensedb/internal"
+	"github.com/anton-l/go-license-detector/licensedb/api"
+	"github.com/anton-l/go-license-detector/licensedb/filer"
+	"github.com/anton-l/go-license-detector/licensedb/internal"
 )
 
 var (
