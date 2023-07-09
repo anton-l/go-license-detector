@@ -1,7 +1,7 @@
 package licensedb
 
 import (
-	"github.com/go-enry/go-license-detector/v4/licensedb/internal"
+	"github.com/anton-l/go-license-detector/licensedb/internal"
 )
 
 // InvestigateLicenseText takes the license text and returns the most probable reference licenses matched.
