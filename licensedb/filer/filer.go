@@ -201,37 +201,12 @@ type zipNode struct {
 }
 
 type zipFiler struct {
-	arch *zip.ReadCloser
+	arch *zip.Reader
 	tree *zipNode
 }
 
-// FromZIP returns a Filer that allows accessing all the files in a ZIP archive given its path.
-func FromZIP(path string) (Filer, error) {
-	arch, err := zip.OpenReader(path)
-	if err != nil {
-		return nil, errors.Wrapf(err, "cannot read ZIP archive %s", path)
-	}
-	root := &zipNode{children: map[string]*zipNode{}}
-	for _, f := range arch.File {
-		path := strings.Split(f.Name, "/") // zip always has "/"
-		node := root
-		for _, part := range path {
-			if part == "" {
-				continue
-			}
-			child := node.children[part]
-			if child == nil {
-				child = &zipNode{children: map[string]*zipNode{}}
-				node.children[part] = child
-			}
-			node = child
-		}
-		node.file = f
-	}
-	return &zipFiler{arch: arch, tree: root}, nil
-}
-
-func FromZipBytes(data []byte) (Filer, error) {
+// FromZIP returns a Filer that allows accessing all the files in a ZIP archive given its bytes.
+func FromZIP(data []byte) (Filer, error) {
 	arch, err := zip.NewReader(bytes.NewReader(data), int64(len(data)))
 	if err != nil {
 		return nil, errors.Wrap(err, "cannot read ZIP data")
@@ -306,7 +281,7 @@ func (filer *zipFiler) ReadDir(path string) ([]File, error) {
 }
 
 func (filer *zipFiler) Close() {
-	filer.arch.Close()
+	//filer.arch.Close()
 }
 
 func (filer *zipFiler) PathsAreAlwaysSlash() bool {
