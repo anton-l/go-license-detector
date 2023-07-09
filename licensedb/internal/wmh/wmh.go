@@ -8,7 +8,7 @@ import (
 	"reflect"
 	"unsafe"
 
-	"github.com/go-enry/go-license-detector/v4/licensedb/internal/fastlog"
+	"github.com/anton-l/go-license-detector/licensedb/internal/fastlog"
 	"golang.org/x/exp/rand"
 	"gonum.org/v1/gonum/stat/distuv"
 )
