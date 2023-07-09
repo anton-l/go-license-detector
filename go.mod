@@ -1,4 +1,4 @@
-module github.com/go-enry/go-license-detector/v4
+module github.com/anton-l/go-license-detector
 
 go 1.18
 
