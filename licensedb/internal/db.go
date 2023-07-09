@@ -18,11 +18,11 @@ import (
 	minhashlsh "github.com/ekzhu/minhash-lsh"
 	"github.com/sergi/go-diff/diffmatchpatch"
 
-	"github.com/go-enry/go-license-detector/v4/licensedb/filer"
-	"github.com/go-enry/go-license-detector/v4/licensedb/internal/assets"
-	"github.com/go-enry/go-license-detector/v4/licensedb/internal/fastlog"
-	"github.com/go-enry/go-license-detector/v4/licensedb/internal/normalize"
-	"github.com/go-enry/go-license-detector/v4/licensedb/internal/wmh"
+	"github.com/anton-l/go-license-detector/licensedb/filer"
+	"github.com/anton-l/go-license-detector/licensedb/internal/assets"
+	"github.com/anton-l/go-license-detector/licensedb/internal/fastlog"
+	"github.com/anton-l/go-license-detector/licensedb/internal/normalize"
+	"github.com/anton-l/go-license-detector/licensedb/internal/wmh"
 )
 
 // ErrUnknownLicenseID is raised if license identifier is not known.
